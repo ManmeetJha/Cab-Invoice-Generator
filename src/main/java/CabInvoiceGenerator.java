@@ -15,9 +15,21 @@ public class CabInvoiceGenerator {
     public double calculateTotalFare(Rides[] rides) {
         double totalFare = 0.0;
         for (Rides ride : rides) {
-            totalFare += ride.distance * MINIMUM_COST_PER_KM + ride.time * COST_PER_TIME + MINIMUM_FARE;
+            totalFare += this.calculateFare(ride.distance,ride.time);
         }
         return  totalFare;
+    }
+
+    public Summary invoiceSummary(Rides[] rides) {
+        double totalFare = 0.0;
+        double averageFare=0.0;
+        int count=0;
+        for (Rides ride : rides) {
+            count++;
+            totalFare += this.calculateFare(ride.distance,ride.time);
+        }
+        averageFare=totalFare/count;
+        return  new Summary(count,totalFare,averageFare);
     }
 
 

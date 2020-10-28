@@ -25,4 +25,13 @@ public class InvoiceTest {
         Assert.assertEquals(610,fare,0);
 
     }
+
+    @Test
+    public void givenMultipleRides_ShouldReturnSummary() {
+        Rides[] rides={new Rides(10,100),new Rides(20,200)};
+        Summary invoiceSummary = cabInvoiceGenerator.invoiceSummary(rides);
+        Summary expectedInvoiceSummary=new Summary(2,610,305);
+        Assert.assertEquals(expectedInvoiceSummary,invoiceSummary);
+
+    }
 }
